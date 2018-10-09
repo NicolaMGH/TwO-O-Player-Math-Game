@@ -1,10 +1,13 @@
 class Player
-  attr_reader  :name
-  attr_accessor :life
+  attr_accessor :life, :name
 
-  def initialize(name, life = 3)
-    @name = name
+  @@player_count = 1
+
+  def initialize(life = 3)
+    print "Player #{@@player_count}, enter your name: "
+    @name = gets.chomp
     @life = life
+    @@player_count += 1
   end
 
   def wrong_answer

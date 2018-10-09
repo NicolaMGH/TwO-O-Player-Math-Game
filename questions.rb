@@ -1,9 +1,12 @@
 class Question
   attr_reader :num1, :num2
+  attr_accessor :is_right
 
-  def initialize
+  def initialize(current_player)
     @num1 = 1 + rand(20)
     @num2 = 1 + rand(20)
+    puts "#{current_player}: What does #{num1} plus #{num2} equal?"
+    print "> "
   end
 
   def ques
@@ -11,19 +14,15 @@ class Question
   end
 
   def answer
-    puts "What is #{num1} + #{num2}"
-    print "> "
     users_input = $stdin.gets.chomp.to_i
 
     if users_input == self.ques
-      puts "CORRECT"
+      puts "Good Work!!!"
+      @is_right = true
     else
-      puts "WRONG"
+      puts "Seriously? WRONG!!!"
+      @is_right = false
     end
   end
 
 end
-
-newq = Question.new
-
-newq.answer
